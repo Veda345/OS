@@ -1,9 +1,9 @@
 CC=gcc
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=main.c
+SOURCES=cat.c
 OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=hello
+EXECUTABLE=cat
 
 all: $(SOURCES) $(EXECUTABLE)
 	
@@ -12,4 +12,7 @@ $(EXECUTABLE): $(OBJECTS)
 
 .c.o:
 	$(CC) $(CFLAGS) $< -o $@
+
+clean: 
+	rm $(EXECUTABLE) $(EXECUTABLE).o
 
