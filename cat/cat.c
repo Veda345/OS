@@ -8,28 +8,18 @@
 int main(int argc, char** argv)
 {
     char buf[BUF_SIZE];
-    int fd;
-    
-    if (argc == 1) {
-        fd = 0;
-        int n;
-        while ((n=read(fd, buf, BUF_SIZE))>0)
+    int n;
+    while ( (n=read(0, buf, BUF_SIZE))>0 )
         {
-            write(1, buf, n);
-        }
-    } else {
-        for (size_t i = 0; i < argc; i++)  {
-            fd = open(argv[i], O_RDONLY);
-            int n;
-            while ((n=read(fd, buf, BUF_SIZE))>0)
-            {
-                write(1, buf, n);
+            int sum = 0, m = 0;
+            while (sum != n &&  (m = write(1, buf, n)) != -1) {
+                sum += m;
             }
-            close(fd);
+            if (sum != n)
+                printf("%s", "Error");
+                
         }
-        
-    }
+    
     
     return 0;
-
 }
